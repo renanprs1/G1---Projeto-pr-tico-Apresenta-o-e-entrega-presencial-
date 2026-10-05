@@ -5,16 +5,20 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 from sqlalchemy import create_engine
+from pathlib import Path
+import pandas as pd
 
 st.set_page_config(page_title="Criminalidade no Brasil", layout="wide")
 
-# ---------- Carregar dados ----------
-@st.cache_data
-def carregar_dados():
-    df = pd.read_csv('dados/simulacao_criminalidade_brasil.csv')
-    df['data'] = pd.to_datetime(df['data'])
-    df['ano_mes'] = df['data'].dt.to_period('M').astype(str)
-    return df
+
+
+# Obter o diretório onde app.py está localizado
+BASE_DIR = Path(__file__).parent
+
+# Construir o caminho completo do arquivo de dados
+csv_path = BASE_DIR / 'dados' / 'simulacao_criminalidade_brasil.csv'
+
+df = pd.read_csv(csv_path)
 
 df = carregar_dados()
 
