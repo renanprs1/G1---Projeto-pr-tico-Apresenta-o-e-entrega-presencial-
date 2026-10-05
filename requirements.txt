@@ -1,6 +1,5 @@
-streamlit 
+streamlit
 pandas
 numpy
 matplotlib
-seaborn 
-plotly.express 
+sqlalchemy
